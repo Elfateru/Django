@@ -1,0 +1,42 @@
+[
+  {
+    "model": "shopapp.order",
+    "pk": 1,
+    "fields": {
+      "delivery_address": "dwdwfw",
+      "promocode": "1234",
+      "created_at": "2023-08-01T11:43:49.812Z",
+      "user": 1,
+      "products": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 2,
+    "fields": {
+      "delivery_address": "sdggrgerg",
+      "promocode": "123",
+      "created_at": "2023-08-01T11:44:02.474Z",
+      "user": 1,
+      "products": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "shopapp.order",
+    "pk": 3,
+    "fields": {
+      "delivery_address": "dsd",
+      "promocode": "",
+      "created_at": "2023-08-02T14:13:46.746Z",
+      "user": 1,
+      "products": [
+        1,
+        2
+      ]
+    }
+  }
+]
