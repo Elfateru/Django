@@ -1,0 +1,69 @@
+{% extends 'shopapp/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{#  Product #{{ product.pk }}#}
+  {% translate 'Product' %} #{{ product.pk }}
+{% endblock %}
+
+{% block body %}
+  <h1>{% translate 'Product'%} <strong>{{ product.name }}</strong></h1>
+  <div>
+    <div>{% translate 'Description' %}: <em>{{ product.description }}</em></div>
+    <div>{% translate 'Price' %}: {{ product.price }}</div>
+    <div>{% translate 'Discount' %}: {{ product.discount }}</div>
+    <div>{% translate 'Archived' %}: {{ product.archived }}</div>
+
+    {% if product.preview %}
+      <img src="{{ product.preview.url }}" alt="{{ product.preview.name }}">
+    {% endif %}
+
+{#    <h3>Images:</h3>#}
+{#    <div>#}
+{#      {% for img in product.images.all %}#}
+{#        <div>#}
+{#          <img src="{{ img.image.url }}" alt="{{ img.image.name }}">#}
+{#          <div>{{ img.description }}</div>#}
+{#        </div>#}
+{#      {% empty %}#}
+{#        <div>No images uploaded yet</div>#}
+{#      {% endfor %}#}
+
+    </div>
+      <h3>{% translate 'Images' %}:</h3>
+    <div>
+      {% if product.images.all|length >= 1 %}
+        {% blocktranslate count img_count=product.images.all|length %}
+          The product has one photo
+          {% plural %}
+          The product has {{ img_count }} photos
+        {% endblocktranslate %}
+      {% endif %}
+      {% for img in product.images.all %}
+        <div>
+          <img src="{{ img.image.url }}" alt="{{ img.image.name }}">
+          <div>{{ img.description }}</div>
+        </div>
+      {% empty %}
+        <div>{% translate 'No images uploaded yet' %}</div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+  <div>
+    <a href="{% url 'shopapp:product_update' pk=product.pk %}">
+      {% translate 'Update product' %}
+    </a>
+  </div>
+  <div>
+    <a href="{% url 'shopapp:product_delete' pk=product.pk %}">
+      {% translate 'Archive product' %}
+    </a>
+  </div>
+  <div>
+    <a href="{% url 'shopapp:products_list' %}">
+      {% translate 'Back to products list' %}</a>
+  </div>
+{% endblock %}
